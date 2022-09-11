@@ -2,7 +2,7 @@ module AnonhelperDestructableBounceBlock
 
 using ..Ahorn, Maple
 
-@mapdef Entity "Anonhelper/DestructableBounceBlock" DestructableBounceBlock(x::Integer, y::Integer, iceMode::Bool=false)
+@mapdef Entity "Anonhelper/DestructableBounceBlock" DestructableBounceBlock(x::Integer, y::Integer, notCoreMode::Bool=false)
 
 const placements = Ahorn.PlacementDict(
     "Destructible Bounce Block (Anonhelper)" => Ahorn.EntityPlacement(
@@ -16,11 +16,23 @@ Ahorn.resizable(entity::DestructableBounceBlock) = true, true
 
 Ahorn.selection(entity::DestructableBounceBlock) = Ahorn.getEntityRectangle(entity)
 
-frameResource = "objects/AnonHelper/bumpBlockNew/fire00"
-crystalResource = "objects/AnonHelper/bumpBlockNew/fire_center00"
+function Ahorn.render(ctx::Ahorn.Cairo.CairoContext, entity::DestructableBounceBlock, room::Maple.Room)
+    x = Int(get(entity.data, "x", 0))
+    y = Int(get(entity.data, "y", 0))
 
+    width = Int(get(entity.data, "width", 32))
+    height = Int(get(entity.data, "height", 32))
 
-function renderDestructableBounceBlock(ctx::Ahorn.Cairo.CairoContext, x::Number, y::Number, width::Number, height::Number)
+    notCoreMode = get(entity.data, "notCoreMode", false)
+
+    if notCoreMode == true
+        frameResource = "objects/AnonHelper/bumpBlockNew/ice00"
+        crystalResource = "objects/AnonHelper/bumpBlockNew/ice_center00"
+    else
+        frameResource = "objects/AnonHelper/bumpBlockNew/fire00"
+        crystalResource = "objects/AnonHelper/bumpBlockNew/fire_center00"
+    end
+
     crystalSprite = Ahorn.getSprite(crystalResource, "Gameplay")
     
     tilesWidth = div(width, 8)
@@ -52,16 +64,6 @@ function renderDestructableBounceBlock(ctx::Ahorn.Cairo.CairoContext, x::Number,
     Ahorn.drawImage(ctx, crystalSprite, div(width - crystalSprite.width, 2), div(height - crystalSprite.height, 2))
 
     Ahorn.restore(ctx)
-end
-
-function Ahorn.render(ctx::Ahorn.Cairo.CairoContext, entity::DestructableBounceBlock, room::Maple.Room)
-    x = Int(get(entity.data, "x", 0))
-    y = Int(get(entity.data, "y", 0))
-
-    width = Int(get(entity.data, "width", 32))
-    height = Int(get(entity.data, "height", 32))
-
-    renderDestructableBounceBlock(ctx, x, y, width, height)
 end
 
 end
