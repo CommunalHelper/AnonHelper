@@ -63,11 +63,11 @@ namespace Celeste.Mod.Anonhelper {
             }
         }
 
-        [MonoModLinkTo("Celeste.JumpThru", "System.Void Update")]
-        private extern void JumpThru_Update();
+        [MonoModLinkTo("Celeste.Platform", "System.Void Update()")]
+        public void Platform_Update() { }
 
         public override void Update() {
-            JumpThru_Update();
+            Platform_Update();
             scale.X = Calc.Approach(scale.X, 1f, 1f * Engine.DeltaTime);
             scale.Y = Calc.Approach(scale.Y, 1f, 1f * Engine.DeltaTime);
             timer += Engine.DeltaTime;
