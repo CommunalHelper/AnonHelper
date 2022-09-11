@@ -1,14 +1,16 @@
 ﻿using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
+using MonoMod;
 using System;
+using System.Collections;
 
 namespace Celeste.Mod.Anonhelper {
-    [CustomEntity("Anonhelper/AnonCloud")]
-    public class AnonCloud : JumpThru {
-        public static ParticleType P_Cloud = new() {
+    [CustomEntity("Anonhelper/WindCloud")]
+    public class WindCloud : AnonCloud {
+        public static ParticleType P_WindCloud = new() {
             Source = GFX.Game["particles/cloud"],
-            Color = Calc.HexToColor("2c5fcc"),
+            Color = Calc.HexToColor("b0500b"),
             FadeMode = ParticleType.FadeModes.None,
             LifeMin = 0.25f,
             LifeMax = 0.3f,
@@ -23,9 +25,9 @@ namespace Celeste.Mod.Anonhelper {
             Acceleration = new Vector2(0f, 90f)
         };
 
-        public static ParticleType P_FragileCloud = new() {
+        public static ParticleType P_FragileWindCloud = new() {
             Source = GFX.Game["particles/cloud"],
-            Color = Calc.HexToColor("5e22ae"),
+            Color = Calc.HexToColor("9c3310"),
             FadeMode = ParticleType.FadeModes.None,
             LifeMin = 0.25f,
             LifeMax = 0.3f,
@@ -39,68 +41,33 @@ namespace Celeste.Mod.Anonhelper {
             SpeedMultiplier = 0.01f,
             Acceleration = new Vector2(0f, 90f)
         };
-
-        public Sprite sprite;
-        public Wiggler wiggler;
-        public bool fragile;
-        public bool pink;
-        public float startY;
-        public bool Small;
-
-        protected ParticleType particleType;
-        protected SoundSource sfx;
-        protected bool waiting = true;
-        protected float speed;
-        protected float timer;
-        protected float respawnTimer;
-        protected Vector2 scale;
-        protected bool canRumble;
-        protected bool returning;        
-
-        public AnonCloud(Vector2 position, bool pink, bool fragile, bool small)
-            : base(position, 32, safe: false) {
+        public WindCloud(Vector2 position, bool fragile, bool small)
+            : base(position, false, fragile, small) {
             Small = small;
-            this.fragile = fragile;
-            this.pink = pink;
-            startY = Y;
-            Collider.Position.X = -16f;
-            timer = Calc.Random.NextFloat() * 4f;
-            Add(wiggler = Wiggler.Create(0.3f, 4f));
-            particleType = pink ? P_FragileCloud : Cloud.P_Cloud;
-            SurfaceSoundIndex = 4;
-            Add(new LightOcclude(0.2f));
-            scale = Vector2.One;
-            Add(sfx = new SoundSource());
+            Add(new WindMover(WindMove));
+            particleType = fragile ? P_FragileWindCloud : P_WindCloud;
         }
 
-        public AnonCloud(EntityData data, Vector2 offset)
-            : this(data.Position + offset, data.Bool("pink"), data.Bool("fragile", true), data.Bool("small")) {
-        }
+        public WindCloud(EntityData data, Vector2 offset)
+            : this(data.Position + offset, data.Bool("fragile"), data.Bool("small")) { }
 
-        public override void Added(Scene scene) {
-            base.Added(scene);
-            string text = pink ? "pinkcloud" : "whitecloud";
-            if (Small) {
-                Collider.Position.X += 2f;
-                Collider.Width -= 6f;
-                text += "Remix";
+        private void WindMove(Vector2 wind) {
+            if (waiting) {
+                if (wind.X != 0f) {
+                    MoveH(wind.X * 1f);
+                }
+
+                if (wind.Y != 0f) {
+                    MoveV(wind.Y * 1f);
+                }
             }
-
-            Add(sprite = AnonModule.spriteBank.Create(text));
-            sprite.Origin = new Vector2(sprite.Width / 2f, 8f);
-            sprite.OnFrameChange = delegate (string s) {
-                if (s == "spawn" && sprite.CurrentAnimationFrame == 6) {
-                    wiggler.Start();
-                }
-
-                if (s == "fade" && sprite.CurrentAnimationFrame == 4 && fragile) {
-                    RemoveSelf();
-                }
-            };
         }
+
+        [MonoModLinkTo("Celeste.JumpThru", "System.Void Update")]
+        private extern void JumpThru_Update();
 
         public override void Update() {
-            base.Update();
+            JumpThru_Update();
             scale.X = Calc.Approach(scale.X, 1f, 1f * Engine.DeltaTime);
             scale.Y = Calc.Approach(scale.Y, 1f, 1f * Engine.DeltaTime);
             timer += Engine.DeltaTime;
@@ -128,6 +95,7 @@ namespace Celeste.Mod.Anonhelper {
                     speed = 180f;
                     scale = new Vector2(1.3f, 0.7f);
                     waiting = false;
+                    startY = Y;
                     if (pink) {
                         Audio.Play("event:/game/04_cliffside/cloud_pink_boost", Position);
                     } else {
@@ -197,13 +165,46 @@ namespace Celeste.Mod.Anonhelper {
             }
 
             MoveV(speed * Engine.DeltaTime, num);
+            foreach (CloudBarrier entity in Scene.Tracker.GetEntities<CloudBarrier>()) {
+                entity.Collidable = true;
+                bool collide = CollideCheck(entity);
+                entity.Collidable = false;
+                if (collide) {
+                    Collidable = false;
+                    Add(new Coroutine(DestroyAnimationRoutine()));
+                    return;
+                }
+            }
         }
 
-        public override void Render() {
-            Vector2 vector = scale;
-            vector *= 1f + (0.1f * wiggler.Value);
-            sprite.Scale = vector;
-            base.Render();
+        public override void Added(Scene scene) {
+            base.Added(scene);
+            string text = fragile ? "windfragile" : "windcloud";
+            if (Small) {
+                Collider.Position.X += 2f;
+                Collider.Width -= 6f;
+                text += "Remix";
+            }
+
+            Remove(sprite);
+            Add(sprite = AnonModule.spriteBank.Create(text));
+            sprite.Origin = new Vector2(sprite.Width / 2f, 8f);
+            sprite.OnFrameChange = delegate (string s) {
+                if (s == "spawn" && sprite.CurrentAnimationFrame == 6) {
+                    wiggler.Start();
+                }
+
+                if (s == "fade" && sprite.CurrentAnimationFrame == 4 && fragile) {
+                    RemoveSelf();
+                }
+            };
+        }
+
+        public IEnumerator DestroyAnimationRoutine() {
+            Audio.Play("event:/game/04_cliffside/cloud_pink_boost", Position);
+            sprite.Play("fade");
+            yield return 1f;
+            RemoveSelf();
         }
     }
 }
