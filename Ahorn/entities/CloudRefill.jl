@@ -6,13 +6,13 @@ using ..Ahorn, Maple
 
 
 const placements = Ahorn.PlacementDict(
-    "CloudRefill (Anonhelper)" => Ahorn.EntityPlacement(
+    "Cloud Refill (Anonhelper)" => Ahorn.EntityPlacement(
         CloudRefill, 
 	"point"
     )
 )
 
-sprite = "objects/cloudRefill/idle00"
+sprite = "objects/AnonHelper/cloudRefill/idle00"
 
 function getSprite(entity::CloudRefill)
 

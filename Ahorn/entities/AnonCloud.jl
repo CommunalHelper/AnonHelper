@@ -6,7 +6,7 @@ using ..Ahorn, Maple
 
 
 const placements = Ahorn.PlacementDict(
-    "AnonCloud (Anonhelper)" => Ahorn.EntityPlacement(
+    "Anon Cloud (Anonhelper)" => Ahorn.EntityPlacement(
 	AnonCloud,
 	"point"
    )

@@ -6,7 +6,7 @@ using ..Ahorn, Maple
 
 
 const placements = Ahorn.PlacementDict(
-    "JellyRefill (Anonhelper)" => Ahorn.EntityPlacement(
+    "Jelly Refill (Anonhelper)" => Ahorn.EntityPlacement(
         JellyRefill, 
 	"point"
     )

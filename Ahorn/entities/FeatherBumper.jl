@@ -10,7 +10,7 @@ const placements = Ahorn.PlacementDict(
 
 Ahorn.nodeLimits(entity::FeatherBumper) = 0, 1
 
-sprite = "objects/AnonHelper/featherBumper/Idle22.png"
+sprite = "objects/AnonHelper/featherBumper/plugin.png"
 
 function Ahorn.selection(entity::FeatherBumper)
     x, y = Ahorn.position(entity)
