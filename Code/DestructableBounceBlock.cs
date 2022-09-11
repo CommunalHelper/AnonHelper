@@ -32,12 +32,12 @@ namespace Celeste.Mod.Anonhelper {
             reformed = true;
             state = States.Waiting;
             startPos = Position;
-            hotImages = BuildSprite(GFX.Game["objects/bumpblocknew/fire00"]);
+            hotImages = BuildSprite(GFX.Game["objects/AnonHelper/bumpBlockNew/fire00"]);
             hotCenterSprite = GFX.SpriteBank.Create("bumpBlockCenterFire");
             hotCenterSprite.Position = new Vector2(Width, Height) / 2f;
             hotCenterSprite.Visible = false;
             Add(hotCenterSprite);
-            coldImages = BuildSprite(GFX.Game["objects/bumpblocknew/ice00"]);
+            coldImages = BuildSprite(GFX.Game["objects/AnonHelper/bumpBlockNew/ice00"]);
             coldCenterSprite = GFX.SpriteBank.Create("bumpBlockCenterIce");
             coldCenterSprite.Position = new Vector2(Width, Height) / 2f;
             coldCenterSprite.Visible = false;
@@ -292,7 +292,7 @@ namespace Celeste.Mod.Anonhelper {
             private float duration;
 
             public RespawnDebris Init(Vector2 from, Vector2 to, bool ice, float duration) {
-                List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures(ice ? "objects/bumpblocknew/ice_rubble" : "objects/bumpblocknew/fire_rubble");
+                List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures(ice ? "objects/AnonHelper/bumpBlockNew/ice_rubble" : "objects/AnonHelper/bumpBlockNew/fire_rubble");
                 MTexture texture = Calc.Random.Choose(atlasSubtextures);
                 if (sprite == null) {
                     Add(sprite = new Image(texture));
@@ -333,7 +333,7 @@ namespace Celeste.Mod.Anonhelper {
             private float duration;
 
             public BreakDebris Init(Vector2 position, Vector2 direction, bool ice) {
-                List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures(ice ? "objects/bumpblocknew/ice_rubble" : "objects/bumpblocknew/fire_rubble");
+                List<MTexture> atlasSubtextures = GFX.Game.GetAtlasSubtextures(ice ? "objects/AnonHelper/bumpBlockNew/ice_rubble" : "objects/AnonHelper/bumpBlockNew/fire_rubble");
                 MTexture texture = Calc.Random.Choose(atlasSubtextures);
                 if (sprite == null) {
                     Add(sprite = new Image(texture));

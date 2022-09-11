@@ -79,7 +79,7 @@ namespace Celeste.Mod.Anonhelper {
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             Add(new PlayerCollider(OnPlayer));
             this.oneUse = oneUse;
-            string str = boostOnEnd ? "objects/boosterRefillOnDash/" : "objects/boosterRefill/";
+            string str = boostOnEnd ? "objects/AnonHelper/boosterRefillOnDash/" : "objects/AnonHelper/boosterRefill/";
             Add(outline = new Image(GFX.Game[str + "outline"]));
             outline.CenterOrigin();
             outline.Visible = false;

@@ -12,7 +12,7 @@ const placements = Ahorn.PlacementDict(
     )
 )
 
-sprite = "objects/jellyRefill/idle00"
+sprite = "objects/AnonHelper/jellyRefill/idle00"
 
 function getSprite(entity::JellyRefill)
 

@@ -16,8 +16,8 @@ Ahorn.resizable(entity::DestructableBounceBlock) = true, true
 
 Ahorn.selection(entity::DestructableBounceBlock) = Ahorn.getEntityRectangle(entity)
 
-frameResource = "objects/BumpBlockNew/fire00"
-crystalResource = "objects/BumpBlockNew/fire_center00"
+frameResource = "objects/AnonHelper/bumpBlockNew/fire00"
+crystalResource = "objects/AnonHelper/bumpBlockNew/fire_center00"
 
 
 function renderDestructableBounceBlock(ctx::Ahorn.Cairo.CairoContext, x::Number, y::Number, width::Number, height::Number)

@@ -13,10 +13,10 @@ const placements = Ahorn.PlacementDict(
 )
 
 const sprites = Dict{Tuple{Bool, Bool}, String}(
-	(false, false) => "objects/Clouds/windcloud00",
-	(true, false) => "objects/Clouds/windfragile00",
-	(false, true) => "objects/Clouds/windcloudRemix00",
-	(true, true) => "objects/Clouds/windfragileRemix00",
+	(false, false) => "objects/AnonHelper/clouds/windcloud00",
+	(true, false) => "objects/AnonHelper/clouds/windfragile00",
+	(false, true) => "objects/AnonHelper/clouds/windcloudRemix00",
+	(true, true) => "objects/AnonHelper/clouds/windfragileRemix00",
 )
 
 function Ahorn.selection(entity::WindCloud)

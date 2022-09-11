@@ -78,7 +78,7 @@ namespace Celeste.Mod.Anonhelper {
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             Add(new PlayerCollider(OnPlayer));
             this.oneUse = oneUse;
-            string str = "objects/JellyRefill/";
+            string str = "objects/AnonHelper/jellyRefill/";
             Add(outline = new Image(GFX.Game[str + "outline"]));
             outline.CenterOrigin();
             outline.Visible = false;

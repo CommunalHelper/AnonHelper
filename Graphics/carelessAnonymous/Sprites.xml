@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Sprites> 
 
- <featherbumper path="objects/featherBumper/" start="idle">
+  <featherbumper path="objects/AnonHelper/featherBumper/" start="idle">
       <Center/>
       <Anim id="on" path="idle" frames="42-44" delay="0.06" goto="idle"/>
       <Loop id="idle" path="idle" frames="0-33" delay="0.06"/>
       <Anim id="hit" path="idle" frames="34-42" delay="0.06" goto="off"/>
       <Loop id="off" path="idle" frames="42" delay="0.06"/>
- </featherbumper>
+  </featherbumper>
 
- <whitecloud path="objects/Clouds/" start="spawn">
+  <whitecloud path="objects/AnonHelper/clouds/" start="spawn">
     <Justify x="0.5" y="0.5"/>
     <Loop id="whiteidle" path="whitecloud" delay="0.08" frames="0"/>
     <Loop id="whitedead" path="whitecloud" delay="0.08" frames="5"/>
@@ -17,7 +17,7 @@
     <Anim id="spawn" path="whitecloud" delay="0.06" frames="6-10" goto="whiteidle"/>
   </whitecloud>
   
-  <whitecloudRemix path="objects/Clouds/" start="whiteidle">
+  <whitecloudRemix path="objects/AnonHelper/clouds/" start="whiteidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="whiteidle" path="whitecloudRemix" delay="0.08" frames="0"/>
     <Loop id="whitedead" path="whitecloudRemix" delay="0.08" frames="5"/>
@@ -25,7 +25,7 @@
     <Anim id="spawn" path="whitecloudRemix" delay="0.06" frames="0"/>
   </whitecloudRemix>
 
-  <pinkcloud path="objects/Clouds/" start="pinkidle">
+  <pinkcloud path="objects/AnonHelper/clouds/" start="pinkidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="pinkidle" path="pinkcloud" delay="0.08" frames="0"/>
     <Loop id="pinkdead" path="pinkcloud" delay="0.08" frames="5"/>
@@ -33,7 +33,7 @@
     <Anim id="spawn" path="pinkcloud" delay="0.08" frames="0"/>
   </pinkcloud>
 
-  <pinkcloudRemix path="objects/Clouds/" start="pinkidle">
+  <pinkcloudRemix path="objects/AnonHelper/clouds/" start="pinkidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="pinkidle" path="pinkcloudRemix" delay="0.08" frames="0"/>
     <Loop id="pinkdead" path="pinkcloudRemix" delay="0.08" frames="5"/>
@@ -41,21 +41,21 @@
     <Anim id="spawn" path="pinkcloudRemix" delay="0.06" frames="0"/>
   </pinkcloudRemix>
 
-  <windcloud path="objects/Clouds/" start="windidle">
+  <windcloud path="objects/AnonHelper/clouds/" start="windidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="windidle" path="windcloud" delay="0.08" frames="0"/>
     <Anim id="fade" path="windcloud" delay="0.08" frames="1-5"/>
     <Anim id="spawn" path="windcloud" delay="0.06" frames="0"/>
   </windcloud>
 
-  <windcloudRemix path="objects/Clouds/" start="windidle">
+  <windcloudRemix path="objects/AnonHelper/clouds/" start="windidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="windidle" path="windcloudRemix" delay="0.08" frames="0"/>  
     <Anim id="fade" path="windcloudRemix" delay="0.08" frames="1-5"/>
     <Anim id="spawn" path="windcloudRemix" delay="0.06" frames="0"/>
   </windcloudRemix>
 
-  <windfragile path="objects/Clouds/" start="windfragileidle">
+  <windfragile path="objects/AnonHelper/clouds/" start="windfragileidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="windfragileidle" path="windfragile" delay="0.08" frames="0"/>
     <Loop id="windfragiledead" path="windfragile" delay="0.08" frames="5"/>
@@ -63,7 +63,7 @@
     <Anim id="spawn" path="windfragile" delay="0.06" frames="0"/>
   </windfragile>
 
-  <windfragileRemix path="objects/Clouds/" start="windfragileidle">
+  <windfragileRemix path="objects/AnonHelper/clouds/" start="windfragileidle">
     <Justify x="0.5" y="0.5"/>
     <Loop id="windfragileidle" path="windfragileRemix" delay="0.08" frames="0"/>
     <Loop id="windfragiledead" path="windfragileRemix" delay="0.08" frames="5"/>
@@ -71,7 +71,7 @@
     <Anim id="spawn" path="windfragileRemix" delay="0.06" frames="0"/>
   </windfragileRemix>
 
-  <bounceCenter path="objects/BumpBlock/" start="hot">
+  <bounceCenter path="objects/AnonHelper/bumpBlock/" start="hot">
     <Center/>
     <Anim id="hotWait" path="center" frames="0-7" delay="0.08" goto="hotWaitLoop"/>
     <Loop id="hotWaitLoop" path="center" frames="4-7" delay="0.08"/>
@@ -81,12 +81,12 @@
     <Loop id="ice" path="center" frames="13-18" delay="0.08"/>
   </bounceCenter>
 
-  <bumpBlockCenterIce path="objects/BumpBlockNew/" start="idle">
+  <bumpBlockCenterIce path="objects/AnonHelper/bumpBlockNew/" start="idle">
     <Center/>
     <Loop id="idle" path="ice_center" delay="0.1"/>
   </bumpBlockCenterIce>
   
-  <bumpBlockCenterFire path="objects/BumpBlockNew/" start="idle">
+  <bumpBlockCenterFire path="objects/AnonHelper/bumpBlockNew/" start="idle">
     <Center/>
     <Loop id="idle" path="fire_center" delay="0.08"/>
   </bumpBlockCenterFire>
