@@ -4,13 +4,13 @@ using System;
 namespace Celeste.Mod.Anonhelper {
     public class AnonModule : EverestModule {
         public static AnonModule Instance;
-        public static AnonhelperSession Session => (AnonhelperSession)Instance._Session;
         public static SpriteBank spriteBank;
 
         public AnonModule() {
             Instance = this;
         }
 
+        public static AnonhelperSession Session => (AnonhelperSession)Instance._Session;
         public override Type SessionType => typeof(AnonhelperSession);
 
         public override void LoadContent(bool firstLoad) {

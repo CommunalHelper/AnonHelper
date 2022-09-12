@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Monocle;
-using MonoMod.Utils;
 using System;
 using System.Collections;
 
@@ -10,7 +9,7 @@ namespace Celeste.Mod.Anonhelper {
             On.Celeste.LevelLoader.LoadingThread += ResetDash;
             On.Celeste.Player.DashBegin += CustomDashBegin;
             On.Celeste.Player.DashEnd += CustomDashEnd;
-            On.Celeste.Player.Die += CloudDeath;
+            On.Celeste.Player.Die += CustomDashDeath;
             On.Celeste.PlayerHair.GetHairColor += GetCustomHairColor;
         }
 
@@ -18,18 +17,13 @@ namespace Celeste.Mod.Anonhelper {
             On.Celeste.LevelLoader.LoadingThread -= ResetDash;
             On.Celeste.Player.DashBegin -= CustomDashBegin;
             On.Celeste.Player.DashEnd -= CustomDashEnd;
-            On.Celeste.Player.Die -= CloudDeath;
+            On.Celeste.Player.Die -= CustomDashDeath;
             On.Celeste.PlayerHair.GetHairColor -= GetCustomHairColor;
         }
 
         private static void ResetDash(On.Celeste.LevelLoader.orig_LoadingThread orig, LevelLoader self) {
             orig.Invoke(self);
-            AnonModule.Session.HasCloudDash = false;
-            AnonModule.Session.HasCoreDash = false;
-            AnonModule.Session.HasJellyDash = false;
-            AnonModule.Session.HasBoosterDash = false;
-            AnonModule.Session.HasFeatherDash = false;
-            AnonModule.Session.HasSuperDash = false;
+            ResetDashSession();
         }
 
         private static void CustomDashBegin(On.Celeste.Player.orig_DashBegin orig, Player self) {
@@ -66,22 +60,17 @@ namespace Celeste.Mod.Anonhelper {
             orig.Invoke(self);
         }
 
-        public static void CustomDashEnd(On.Celeste.Player.orig_DashEnd orig, Player self) {
+        private static void CustomDashEnd(On.Celeste.Player.orig_DashEnd orig, Player self) {
             SaveData.Instance.Assists.SuperDashing = false;
             orig.Invoke(self);
         }
 
-        private static PlayerDeadBody CloudDeath(On.Celeste.Player.orig_Die orig, Player self, Vector2 direction, bool evenIfInvincible, bool registerDeathInStats) {
-            AnonModule.Session.HasCloudDash = false;
-            AnonModule.Session.HasCoreDash = false;
-            AnonModule.Session.HasJellyDash = false;
-            AnonModule.Session.HasFeatherDash = false;
-            AnonModule.Session.HasBoosterDash = false;
-            AnonModule.Session.HasSuperDash = false;
+        private static PlayerDeadBody CustomDashDeath(On.Celeste.Player.orig_Die orig, Player self, Vector2 direction, bool evenIfInvincible, bool registerDeathInStats) {
+            ResetDashSession();
             return orig.Invoke(self, direction, evenIfInvincible, registerDeathInStats);
         }
 
-        public static Color GetCustomHairColor(On.Celeste.PlayerHair.orig_GetHairColor orig, PlayerHair self, int index) {
+        private static Color GetCustomHairColor(On.Celeste.PlayerHair.orig_GetHairColor orig, PlayerHair self, int index) {
             if (AnonModule.Session.HasCloudDash) {
                 return Color.LightCyan;
             } else if (AnonModule.Session.HasCoreDash && Engine.Scene is Level level && level.Session != null) {
@@ -104,29 +93,38 @@ namespace Celeste.Mod.Anonhelper {
             return orig.Invoke(self, index);
         }
 
-        public static IEnumerator CloudDelay(Player player) {
+        private static IEnumerator CloudDelay(Player player) {
             yield return SaveData.Instance.Assists.SuperDashing ? 0.2f : 0.08f;
             player.Scene.Add(new AnonCloud(player.Position + (player.Speed / 17) + (player.Speed.X >= 288 ? new Vector2(1 / 2, 1) : new Vector2(0, -1)), false, true, false));
         }
 
-        public static IEnumerator CoreDelay(Player player) {
+        private static IEnumerator CoreDelay(Player player) {
             yield return SaveData.Instance.Assists.SuperDashing ? 0.2f : 0.08f;
             player.Scene.Add(new DestructableBounceBlock(player.Position + (player.Speed / 17) + (Math.Abs(player.Speed.Y) >= 240 ? new Vector2(-8, 3) : new Vector2(-8, 2)), 16, 16));
         }
 
-        public static IEnumerator JellyDelay(Player player) {
+        private static IEnumerator JellyDelay(Player player) {
             yield return SaveData.Instance.Assists.SuperDashing ? 0.2f : 0.1f;
             player.Scene.Add(new Glider(player.Position + (player.Speed / 17) + (player.Speed.X >= 288 ? new Vector2(1 / 2, 1) : new Vector2(0, -1)), true, false));
         }
 
-        public static IEnumerator FeatherDelay(Player player) {
+        private static IEnumerator FeatherDelay(Player player) {
             yield return 0.3f;
             player.StateMachine.State = Player.StStarFly;
         }
 
-        public static IEnumerator BoosterDelay(Player player) {
+        private static IEnumerator BoosterDelay(Player player) {
             player.Scene.Add(new OneUseBooster(player.Position + new Vector2(0, -10), true));
             yield return 1f;
+        }
+
+        private static void ResetDashSession() {
+            AnonModule.Session.HasCloudDash = false;
+            AnonModule.Session.HasCoreDash = false;
+            AnonModule.Session.HasJellyDash = false;
+            AnonModule.Session.HasFeatherDash = false;
+            AnonModule.Session.HasBoosterDash = false;
+            AnonModule.Session.HasSuperDash = false;
         }
     }
 }

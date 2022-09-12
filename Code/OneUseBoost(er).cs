@@ -23,7 +23,7 @@ namespace Celeste.Mod.Anonhelper {
             On.Celeste.Booster.BoostRoutine -= BoosterDeath;
         }
 
-        public static IEnumerator BoosterDeath(On.Celeste.Booster.orig_BoostRoutine orig, Booster self, Player player, Vector2 direction) {
+        private static IEnumerator BoosterDeath(On.Celeste.Booster.orig_BoostRoutine orig, Booster self, Player player, Vector2 direction) {
             if (self is OneUseBooster) {
                 self.Scene.Remove(DynamicData.For(self).Get<Entity>("outline"));
             }
