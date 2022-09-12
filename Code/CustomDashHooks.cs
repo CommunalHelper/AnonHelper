@@ -30,19 +30,29 @@ namespace Celeste.Mod.Anonhelper {
             if (AnonModule.Session.HasCloudDash) {
                 AnonModule.Session.HasCloudDash = false;
                 self.Add(new Coroutine(CloudDelay(self)));
-            } else if (AnonModule.Session.HasCoreDash) {
+            }
+
+            if (AnonModule.Session.HasCoreDash) {
                 AnonModule.Session.HasCoreDash = false;
                 self.Add(new Coroutine(CoreDelay(self)));
-            } else if (AnonModule.Session.HasJellyDash) {
+            }
+
+            if (AnonModule.Session.HasJellyDash) {
                 AnonModule.Session.HasJellyDash = false;
                 self.Add(new Coroutine(JellyDelay(self)));
-            } else if (AnonModule.Session.HasFeatherDash) {
+            }
+
+            if (AnonModule.Session.HasFeatherDash) {
                 AnonModule.Session.HasFeatherDash = false;
                 self.Add(new Coroutine(FeatherDelay(self)));
-            } else if (AnonModule.Session.HasBoosterDash) {
+            }
+
+            if (AnonModule.Session.HasBoosterDash) {
                 AnonModule.Session.HasBoosterDash = false;
                 self.Add(new Coroutine(BoosterDelay(self)));
-            } else if (AnonModule.Session.HasSuperDash) {
+            }
+
+            if (AnonModule.Session.HasSuperDash) {
                 AnonModule.Session.HasSuperDash = false;
                 AnonModule.Session.StartedSuperDash = true;
             }
