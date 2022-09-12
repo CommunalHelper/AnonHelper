@@ -11,3 +11,8 @@ entities.Anonhelper/WindCloud.placements.name.normal=Wind Cloud
 entities.Anonhelper/WindCloud.placements.name.fragile=Wind Cloud (Fragile)
 entities.Anonhelper/WindCloud.attributes.description.fragile=Determines whether the cloud will temporarily disappear after being touched.
 entities.Anonhelper/WindCloud.attributes.description.small=Reduces the surface area of the cloud.
+
+# One Use Booster
+entities.Anonhelper/OneUseBooster.placements.name.green=One Use Booster (Green)
+entities.Anonhelper/OneUseBooster.placements.name.red=One Use Booster (Red)
+entities.Anonhelper/OneUseBooster.attributes.description.red=Determines whether the booster is green and short distance, or red and infinite distance.
