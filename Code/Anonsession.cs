@@ -6,5 +6,6 @@
         public bool HasFeatherDash { get; set; } = false;
         public bool HasBoosterDash { get; set; } = false;
         public bool HasSuperDash { get; set; } = false;
+        public bool StartedSuperDash { get; set; } = false;
     }
 }

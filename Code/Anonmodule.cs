@@ -16,18 +16,21 @@ namespace Celeste.Mod.Anonhelper {
         public override void LoadContent(bool firstLoad) {
             base.LoadContent(firstLoad);
             spriteBank = new SpriteBank(GFX.Game, "Graphics/carelessAnonymous/Sprites.xml");
+            SuperDashRefill.LoadContent();
         }
 
         public override void Load() {
             CustomDashHooks.Load();
             InvisibleSeekerBarrier.Load();
             OneUseBooster.Load();
+            SuperDashRefill.Load();
         }
 
         public override void Unload() {
             CustomDashHooks.Unload();
             InvisibleSeekerBarrier.Unload();
             OneUseBooster.Unload();
+            SuperDashRefill.Unload();
         }
     }
 }

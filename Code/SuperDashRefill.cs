@@ -1,65 +1,26 @@
 ﻿using Celeste.Mod.Entities;
 using Microsoft.Xna.Framework;
 using Monocle;
+using MonoMod.Cil;
+using MonoMod.RuntimeDetour;
+using MonoMod.Utils;
 using System;
 using System.Collections;
+using System.Reflection;
 
 namespace Celeste.Mod.Anonhelper {
     [CustomEntity("Anonhelper/SuperDashRefill")]
     public class SuperDashRefill : Entity {
-        public static ParticleType P_Shatter = new() {
-            Source = GFX.Game["particles/triangle"],
-            Color = Calc.HexToColor("006fc2"),
-            Color2 = Calc.HexToColor("002e80"),
-            FadeMode = ParticleType.FadeModes.Late,
-            LifeMin = 0.25f,
-            LifeMax = 0.4f,
-            Size = 1f,
-            Direction = 4.712389f,
-            DirectionRange = 0.87266463f,
-            SpeedMin = 140f,
-            SpeedMax = 210f,
-            SpeedMultiplier = 0.005f,
-            RotationMode = ParticleType.RotationModes.Random,
-            SpinMin = (float)Math.PI / 2f,
-            SpinMax = 4.712389f,
-            SpinFlippedChance = true
-        };
-
-        public static ParticleType P_Glow = new() {
-            LifeMin = 0.4f,
-            LifeMax = 0.6f,
-            Size = 1f,
-            SizeRange = 0f,
-            DirectionRange = (float)Math.PI * 2f,
-            SpeedMin = 4f,
-            SpeedMax = 8f,
-            FadeMode = ParticleType.FadeModes.Late,
-            Color = Calc.HexToColor("006fc2"),
-            Color2 = Calc.HexToColor("002e80"),
-            ColorMode = ParticleType.ColorModes.Blink
-        };
-
-        public static ParticleType P_Regen = new() {
-            LifeMin = 0.4f,
-            LifeMax = 0.6f,
-            Size = 1f,
-            SizeRange = 0f,
-            FadeMode = ParticleType.FadeModes.Late,
-            Color = Calc.HexToColor("006fc2"),
-            Color2 = Calc.HexToColor("002e80"),
-            ColorMode = ParticleType.ColorModes.Blink,
-            SpeedMin = 30f,
-            SpeedMax = 40f,
-            SpeedMultiplier = 0.2f,
-            DirectionRange = (float)Math.PI * 2f
-
-        };
+        public static ParticleType P_Shatter;
+        public static ParticleType P_Glow;
+        public static ParticleType P_Regen;
 
         public bool addDash;
         public bool HasSuperDash = false;
         public bool dashStarted = false;
         public Player player;
+
+        private static ILHook dashCoroutineHook;
 
         private readonly Sprite sprite;
         private readonly Sprite flash;
@@ -107,6 +68,69 @@ namespace Celeste.Mod.Anonhelper {
             : this(data.Position + offset, data.Bool("oneUse")) {
         }
 
+        public static void Load() {
+            IL.Celeste.Player.DashBegin += ModSuperDashChecks;
+            IL.Celeste.Player.DashUpdate += ModSuperDashChecks;
+            dashCoroutineHook = new ILHook(typeof(Player).GetMethod("DashCoroutine", BindingFlags.NonPublic | BindingFlags.Instance).GetStateMachineTarget(), ModSuperDashChecks);
+        }
+
+        public static void Unload() {
+            IL.Celeste.Player.DashBegin -= ModSuperDashChecks;
+            IL.Celeste.Player.DashUpdate -= ModSuperDashChecks;
+            dashCoroutineHook.Dispose();
+            dashCoroutineHook = null;
+        }
+        
+        public static void LoadContent() {
+            P_Shatter = new ParticleType() {
+                Source = GFX.Game["particles/triangle"],
+                Color = Calc.HexToColor("006fc2"),
+                Color2 = Calc.HexToColor("002e80"),
+                FadeMode = ParticleType.FadeModes.Late,
+                LifeMin = 0.25f,
+                LifeMax = 0.4f,
+                Size = 1f,
+                Direction = 4.712389f,
+                DirectionRange = 0.87266463f,
+                SpeedMin = 140f,
+                SpeedMax = 210f,
+                SpeedMultiplier = 0.005f,
+                RotationMode = ParticleType.RotationModes.Random,
+                SpinMin = (float)Math.PI / 2f,
+                SpinMax = 4.712389f,
+                SpinFlippedChance = true
+            };
+
+            P_Glow = new ParticleType() {
+                LifeMin = 0.4f,
+                LifeMax = 0.6f,
+                Size = 1f,
+                SizeRange = 0f,
+                DirectionRange = (float)Math.PI * 2f,
+                SpeedMin = 4f,
+                SpeedMax = 8f,
+                FadeMode = ParticleType.FadeModes.Late,
+                Color = Calc.HexToColor("006fc2"),
+                Color2 = Calc.HexToColor("002e80"),
+                ColorMode = ParticleType.ColorModes.Blink
+            };
+
+             P_Regen = new ParticleType() {
+                LifeMin = 0.4f,
+                LifeMax = 0.6f,
+                Size = 1f,
+                SizeRange = 0f,
+                FadeMode = ParticleType.FadeModes.Late,
+                Color = Calc.HexToColor("006fc2"),
+                Color2 = Calc.HexToColor("002e80"),
+                ColorMode = ParticleType.ColorModes.Blink,
+                SpeedMin = 30f,
+                SpeedMax = 40f,
+                SpeedMultiplier = 0.2f,
+                DirectionRange = (float)Math.PI * 2f
+            };
+        }
+
         public override void Added(Scene scene) {
             base.Added(scene);
             level = SceneAs<Level>();
@@ -130,6 +154,16 @@ namespace Celeste.Mod.Anonhelper {
             if (Scene.OnInterval(2f) && sprite.Visible) {
                 flash.Play("flash", restart: true);
                 flash.Visible = true;
+            }
+        }
+        
+        private static void ModSuperDashChecks(ILContext ctx) {
+            ILCursor cursor = new(ctx);
+            // We want every effect that checks for SuperDash to also trigger for our refill
+            while (cursor.TryGotoNext(MoveType.After, instr => instr.MatchLdfld(typeof(Assists), "SuperDashing"))) {
+                cursor.EmitDelegate<Func<bool, bool>>((superDashVariantActive) => {
+                    return superDashVariantActive || AnonModule.Session.StartedSuperDash;
+                });
             }
         }
 

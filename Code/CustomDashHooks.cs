@@ -6,22 +6,22 @@ using System.Collections;
 namespace Celeste.Mod.Anonhelper {
     public static class CustomDashHooks {
         public static void Load() {
-            On.Celeste.LevelLoader.LoadingThread += ResetDash;
+            On.Celeste.LevelLoader.LoadingThread += CustomDashInitialize;
             On.Celeste.Player.DashBegin += CustomDashBegin;
             On.Celeste.Player.DashEnd += CustomDashEnd;
             On.Celeste.Player.Die += CustomDashDeath;
-            On.Celeste.PlayerHair.GetHairColor += GetCustomHairColor;
+            On.Celeste.PlayerHair.GetHairColor += GetCustomDashHairColor;
         }
 
         public static void Unload() {
-            On.Celeste.LevelLoader.LoadingThread -= ResetDash;
+            On.Celeste.LevelLoader.LoadingThread -= CustomDashInitialize;
             On.Celeste.Player.DashBegin -= CustomDashBegin;
             On.Celeste.Player.DashEnd -= CustomDashEnd;
             On.Celeste.Player.Die -= CustomDashDeath;
-            On.Celeste.PlayerHair.GetHairColor -= GetCustomHairColor;
+            On.Celeste.PlayerHair.GetHairColor -= GetCustomDashHairColor;
         }
 
-        private static void ResetDash(On.Celeste.LevelLoader.orig_LoadingThread orig, LevelLoader self) {
+        private static void CustomDashInitialize(On.Celeste.LevelLoader.orig_LoadingThread orig, LevelLoader self) {
             orig.Invoke(self);
             ResetDashSession();
         }
@@ -30,38 +30,32 @@ namespace Celeste.Mod.Anonhelper {
             if (AnonModule.Session.HasCloudDash) {
                 AnonModule.Session.HasCloudDash = false;
                 self.Add(new Coroutine(CloudDelay(self)));
-            }
-
-            if (AnonModule.Session.HasCoreDash) {
+            } else if (AnonModule.Session.HasCoreDash) {
                 AnonModule.Session.HasCoreDash = false;
                 self.Add(new Coroutine(CoreDelay(self)));
-            }
-
-            if (AnonModule.Session.HasJellyDash) {
+            } else if (AnonModule.Session.HasJellyDash) {
                 AnonModule.Session.HasJellyDash = false;
                 self.Add(new Coroutine(JellyDelay(self)));
-            }
-
-            if (AnonModule.Session.HasFeatherDash) {
+            } else if (AnonModule.Session.HasFeatherDash) {
                 AnonModule.Session.HasFeatherDash = false;
                 self.Add(new Coroutine(FeatherDelay(self)));
-            }
-
-            if (AnonModule.Session.HasBoosterDash) {
+            } else if (AnonModule.Session.HasBoosterDash) {
                 AnonModule.Session.HasBoosterDash = false;
                 self.Add(new Coroutine(BoosterDelay(self)));
-            }
-
-            if (AnonModule.Session.HasSuperDash) {
-                SaveData.Instance.Assists.SuperDashing = true;
+            } else if (AnonModule.Session.HasSuperDash) {
                 AnonModule.Session.HasSuperDash = false;
+                AnonModule.Session.StartedSuperDash = true;
             }
 
             orig.Invoke(self);
         }
 
         private static void CustomDashEnd(On.Celeste.Player.orig_DashEnd orig, Player self) {
-            SaveData.Instance.Assists.SuperDashing = false;
+            // We have to split this logic up because SuperDash checks are also done in DashUpdate and DashCoroutine
+            if (AnonModule.Session.StartedSuperDash) {
+                AnonModule.Session.StartedSuperDash = false;
+            }
+            
             orig.Invoke(self);
         }
 
@@ -70,7 +64,7 @@ namespace Celeste.Mod.Anonhelper {
             return orig.Invoke(self, direction, evenIfInvincible, registerDeathInStats);
         }
 
-        private static Color GetCustomHairColor(On.Celeste.PlayerHair.orig_GetHairColor orig, PlayerHair self, int index) {
+        private static Color GetCustomDashHairColor(On.Celeste.PlayerHair.orig_GetHairColor orig, PlayerHair self, int index) {
             if (AnonModule.Session.HasCloudDash) {
                 return Color.LightCyan;
             } else if (AnonModule.Session.HasCoreDash && Engine.Scene is Level level && level.Session != null) {
@@ -125,6 +119,7 @@ namespace Celeste.Mod.Anonhelper {
             AnonModule.Session.HasFeatherDash = false;
             AnonModule.Session.HasBoosterDash = false;
             AnonModule.Session.HasSuperDash = false;
+            AnonModule.Session.StartedSuperDash = false;
         }
     }
 }
