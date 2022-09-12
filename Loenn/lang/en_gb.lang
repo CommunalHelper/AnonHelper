@@ -1,0 +1,7 @@
+mods.Anonhelper.name=Anonhelper
+
+# Anon Cloud
+entities.Anonhelper/AnonCloud.placements.name.normal=Anon Cloud
+entities.Anonhelper/AnonCloud.placements.name.fragile=Anon Cloud (Fragile)
+entities.Anonhelper/AnonCloud.attributes.description.pink=Changes the appearance to be pink. Doesn't change the functionality. 
+entities.Anonhelper/AnonCloud.attributes.description.small=Reduces the surface area of the cloud.
