@@ -153,9 +153,9 @@ namespace Celeste.Mod.Anonhelper {
         }
 
         private void OnPlayer(Player player) {
-            if (!AnonModule.session.HasCoreDash) {
+            if (!AnonModule.Session.HasCoreDash) {
                 player.UseRefill(false);
-                AnonModule.session.HasCoreDash = true;
+                AnonModule.Session.HasCoreDash = true;
                 Audio.Play("event:/game/general/diamond_touch", Position);
                 Input.Rumble(RumbleStrength.Medium, RumbleLength.Medium);
                 Collidable = false;
