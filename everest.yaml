@@ -1,5 +1,5 @@
 - Name: Anonhelper
-  Version: 1.0.7
+  Version: 1.0.8
   DLL: Code/bin/Anonhelper.dll
   Dependencies:
     - Name: Everest
