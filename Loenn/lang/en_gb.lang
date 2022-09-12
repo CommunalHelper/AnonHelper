@@ -5,3 +5,9 @@ entities.Anonhelper/AnonCloud.placements.name.normal=Anon Cloud
 entities.Anonhelper/AnonCloud.placements.name.fragile=Anon Cloud (Fragile)
 entities.Anonhelper/AnonCloud.attributes.description.pink=Changes the appearance to be pink. Doesn't change the functionality. 
 entities.Anonhelper/AnonCloud.attributes.description.small=Reduces the surface area of the cloud.
+
+# Wind Cloud
+entities.Anonhelper/WindCloud.placements.name.normal=Wind Cloud
+entities.Anonhelper/WindCloud.placements.name.fragile=Wind Cloud (Fragile)
+entities.Anonhelper/WindCloud.attributes.description.fragile=Determines whether the cloud will temporarily disappear after being touched.
+entities.Anonhelper/WindCloud.attributes.description.small=Reduces the surface area of the cloud.
