@@ -1,6 +1,7 @@
 name: Release
 
 on:
+  workflow_dispatch:
   push:
     branches: [ dev ]
     paths:
@@ -38,7 +39,7 @@ jobs:
     - name: Upload ZIP
       uses: actions/upload-artifact@v3
       with:
-        name: AdventureHelper
+        name: Anonhelper
         path: |
           Ahorn
           Code/bin
