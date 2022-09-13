@@ -12,7 +12,7 @@ featherBumper.placements = {
 }
 
 function featherBumper.selection(room, entity)
-	local main = utils.rectangle(entity.x - 11 , entity.y - 11, 22, 22)
+    local main = utils.rectangle(entity.x - 11 , entity.y - 11, 22, 22)
 
     if entity.nodes then
         local nodeSelections = {}

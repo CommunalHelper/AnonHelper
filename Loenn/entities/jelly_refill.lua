@@ -15,7 +15,7 @@ jellyRefill.placements = {
 jellyRefill.texture = "objects/AnonHelper/jellyRefill/idle00"
 
 function jellyRefill.selection(room, entity)
-	return utils.rectangle(entity.x - 5, entity.y - 4, 10, 9)
+    return utils.rectangle(entity.x - 5, entity.y - 4, 10, 9)
 end
 
 return jellyRefill

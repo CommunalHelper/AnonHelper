@@ -15,7 +15,7 @@ cloudRefill.placements = {
 cloudRefill.texture = "objects/AnonHelper/cloudRefill/idle00"
 
 function cloudRefill.selection(room, entity)
-	return utils.rectangle(entity.x - 5, entity.y - 4, 11, 7)
+    return utils.rectangle(entity.x - 5, entity.y - 4, 11, 7)
 end
 
 return cloudRefill
