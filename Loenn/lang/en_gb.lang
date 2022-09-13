@@ -16,3 +16,8 @@ entities.Anonhelper/WindCloud.attributes.description.small=Reduces the surface a
 entities.Anonhelper/OneUseBooster.placements.name.green=One Use Booster (Green)
 entities.Anonhelper/OneUseBooster.placements.name.red=One Use Booster (Red)
 entities.Anonhelper/OneUseBooster.attributes.description.red=Determines whether the booster is green and short distance, or red and infinite distance.
+
+# Destructable Bounce Block
+entities.Anonhelper/DestructableBounceBlock.placements.name.fire=Destructable Bounce Block
+entities.Anonhelper/DestructableBounceBlock.placements.name.ice=Destructable Ice Crumble Block
+entities.Anonhelper/DestructableBounceBlock.attributes.description.notCoreMode=Determines whether the entity should ignore the current core mode and default to ice variant.
