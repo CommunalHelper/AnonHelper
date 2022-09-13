@@ -29,3 +29,7 @@ entities.Anonhelper/FeatherBumper.attributes.description.wobble=Makes the bumper
 # Cloud Refill
 entities.Anonhelper/CloudRefill.placements.name.cloud_refill=Cloud Refill
 entities.Anonhelper/CloudRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+
+# Jelly Refill
+entities.Anonhelper/JellyRefill.placements.name.jelly_refill=Jelly Refill
+entities.Anonhelper/JellyRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
