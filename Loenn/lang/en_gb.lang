@@ -25,3 +25,7 @@ entities.Anonhelper/DestructableBounceBlock.attributes.description.notCoreMode=D
 # Feather Bumper
 entities.Anonhelper/FeatherBumper.placements.name.feather_bumper=Feather Bumper
 entities.Anonhelper/FeatherBumper.attributes.description.wobble=Makes the bumper move slightly around which also affects its hitbox.
+
+# Cloud Refill
+entities.Anonhelper/CloudRefill.placements.name.cloud_refill=Cloud Refill
+entities.Anonhelper/CloudRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
