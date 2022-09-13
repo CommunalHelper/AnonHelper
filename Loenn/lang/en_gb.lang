@@ -38,5 +38,9 @@ entities.Anonhelper/JellyRefill.attributes.description.oneUse=Whether the refill
 entities.Anonhelper/FeatherRefill.placements.name.feather_refill=Feather Refill
 entities.Anonhelper/FeatherRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
 
+# Super Dash Refill
+entities.Anonhelper/SuperDashRefill.placements.name.super_dash_refill=Super Dash Refill
+entities.Anonhelper/SuperDashRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+
 # Invisible Seeker Barrier
 entities.Anonhelper/InvisibleSeekerBarrier.placements.name.invisible_seeker_barrier=Invisible Seeker Barrier
