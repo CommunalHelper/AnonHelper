@@ -41,10 +41,11 @@ function windCloud.texture(room, entity)
 end
 
 function windCloud.selection(room, entity)
+	local x, y = entity.x or 0, entity.y or 0
     if entity.small then
-        return utils.rectangle(entity.x - 13, entity.y - 6, 24, 15)
+        return utils.rectangle(x - 13, y - 6, 24, 15)
     else
-        return utils.rectangle(entity.x - 18, entity.y - 6, 36, 15)
+        return utils.rectangle(x - 18, y - 6, 36, 15)
     end
 end
 

@@ -15,7 +15,8 @@ featherRefill.placements = {
 featherRefill.texture = "objects/AnonHelper/featherRefill/idle00"
 
 function featherRefill.selection(room, entity)
-    return utils.rectangle(entity.x - 4, entity.y - 6, 8, 12)
+	local x, y = entity.x or 0, entity.y or 0
+    return utils.rectangle(x - 4, y - 6, 8, 12)
 end
 
 return featherRefill

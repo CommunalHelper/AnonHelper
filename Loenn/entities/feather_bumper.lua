@@ -12,12 +12,14 @@ featherBumper.placements = {
 }
 
 function featherBumper.selection(room, entity)
-    local main = utils.rectangle(entity.x - 11 , entity.y - 11, 22, 22)
+	local ex, ey = entity.x or 0, entity.y or 0
+    local main = utils.rectangle(ex - 11 , ey - 11, 22, 22)
 
     if entity.nodes then
         local nodeSelections = {}
         for _, node in ipairs(entity.nodes) do
-            table.insert(nodeSelections, utils.rectangle(node.x - 11, node.y -11, 22, 22))
+			local nx, ny = entity.x or 0, entity.y or 0
+            table.insert(nodeSelections, utils.rectangle(nx - 11, ny -11, 22, 22))
         end
         return main, nodeSelections
     end

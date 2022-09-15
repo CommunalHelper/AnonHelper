@@ -15,7 +15,8 @@ superDashRefill.placements = {
 superDashRefill.texture = "objects/AnonHelper/superDashRefill/idle00"
 
 function superDashRefill.selection(room, entity)
-    return utils.rectangle(entity.x - 6, entity.y - 4, 12, 7)
+	local x, y = entity.x or 0, entity.y or 0
+    return utils.rectangle(x - 6, y - 4, 12, 7)
 end
 
 return superDashRefill
