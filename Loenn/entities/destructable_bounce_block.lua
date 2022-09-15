@@ -38,7 +38,7 @@ local iceBlockTexture = "objects/AnonHelper/bumpBlockNew/ice00"
 local iceCrystalTexture = "objects/AnonHelper/bumpBlockNew/ice_center00"
 
 local function getBlockTexture(entity)
-    if entity.notCoreMode or entity.iceMode then
+    if entity.notCoreMode then
         return iceBlockTexture, iceCrystalTexture
     else
         return fireBlockTexture, fireCrystalTexture
