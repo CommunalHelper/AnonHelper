@@ -5,10 +5,13 @@ local featherBumper = {}
 featherBumper.name = "Anonhelper/FeatherBumper"
 featherBumper.depth = 0
 featherBumper.nodeLineRenderType = "line"
-featherBumper.texture = "objects/AnonHelper/featherBumper/plugin"
+featherBumper.texture = "objects/AnonHelper/featherBumper/Idle22"
 featherBumper.nodeLimits = {0, 1}
 featherBumper.placements = {
-    name = "feather_bumper"
+    name = "feather_bumper",
+    data = {
+        wobble = true,
+    }
 }
 
 function featherBumper.selection(room, entity)

@@ -13,7 +13,7 @@ placements.entities.Anonhelper/OneUseBooster.tooltips.red=Determines whether the
 placements.entities.Anonhelper/DestructableBounceBlock.tooltips.notCoreMode=Determines whether the entity should ignore the current core mode and default to ice variant.
 
 # Feather Bumper
-placements.entities.Anonhelper/FeatherBumper.tooltips.wobble=Makes the bumper move slightly around which also affects its hitbox.
+placements.entities.Anonhelper/FeatherBumper.tooltips.wobble=Whether the bumper should wobble like in vanilla.
 
 # Cloud Refill
 placements.entities.Anonhelper/CloudRefill.tooltips.oneUse=Whether the refill should respawn after being used.

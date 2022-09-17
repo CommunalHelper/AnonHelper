@@ -1,6 +1,7 @@
 local invisibleSeekerBarrier = {}
 
 invisibleSeekerBarrier.name = "Anonhelper/InvisibleSeekerBarrier"
+invisibleSeekerBarrier.depth = 0
 invisibleSeekerBarrier.fillColor = {0.25, 0.25, 0.25, 0.8}
 invisibleSeekerBarrier.borderColor = {0.0, 0.0, 0.0, 0.0}
 invisibleSeekerBarrier.placements = {
