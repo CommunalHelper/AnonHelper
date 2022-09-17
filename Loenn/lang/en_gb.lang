@@ -1,0 +1,46 @@
+mods.Anonhelper.name=Anonhelper
+
+# Anon Cloud
+entities.Anonhelper/AnonCloud.placements.name.normal=Anon Cloud
+entities.Anonhelper/AnonCloud.placements.name.fragile=Anon Cloud (Fragile)
+entities.Anonhelper/AnonCloud.attributes.description.pink=Changes the appearance to be pink. Doesn't change the functionality. 
+entities.Anonhelper/AnonCloud.attributes.description.small=Reduces the surface area of the cloud.
+
+# Wind Cloud
+entities.Anonhelper/WindCloud.placements.name.normal=Wind Cloud
+entities.Anonhelper/WindCloud.placements.name.fragile=Wind Cloud (Fragile)
+entities.Anonhelper/WindCloud.attributes.description.fragile=Determines whether the cloud will temporarily disappear after being touched.
+entities.Anonhelper/WindCloud.attributes.description.small=Reduces the surface area of the cloud.
+
+# One Use Booster
+entities.Anonhelper/OneUseBooster.placements.name.green=One Use Booster (Green)
+entities.Anonhelper/OneUseBooster.placements.name.red=One Use Booster (Red)
+entities.Anonhelper/OneUseBooster.attributes.description.red=Determines whether the booster is green and short distance, or red and infinite distance.
+
+# Destructable Bounce Block
+entities.Anonhelper/DestructableBounceBlock.placements.name.fire=Destructable Bounce Block
+entities.Anonhelper/DestructableBounceBlock.placements.name.ice=Destructable Ice Crumble Block
+entities.Anonhelper/DestructableBounceBlock.attributes.description.notCoreMode=Determines whether the entity should ignore the current core mode and default to ice variant.
+
+# Feather Bumper
+entities.Anonhelper/FeatherBumper.placements.name.feather_bumper=Feather Bumper
+entities.Anonhelper/FeatherBumper.attributes.description.wobble=Whether the bumper should wobble like in vanilla.
+
+# Cloud Refill
+entities.Anonhelper/CloudRefill.placements.name.cloud_refill=Cloud Refill
+entities.Anonhelper/CloudRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+
+# Jelly Refill
+entities.Anonhelper/JellyRefill.placements.name.jelly_refill=Jelly Refill
+entities.Anonhelper/JellyRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+
+# Feather Refill
+entities.Anonhelper/FeatherRefill.placements.name.feather_refill=Feather Refill
+entities.Anonhelper/FeatherRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+
+# Super Dash Refill
+entities.Anonhelper/SuperDashRefill.placements.name.super_dash_refill=Super Dash Refill
+entities.Anonhelper/SuperDashRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+
+# Invisible Seeker Barrier
+entities.Anonhelper/InvisibleSeekerBarrier.placements.name.invisible_seeker_barrier=Invisible Seeker Barrier

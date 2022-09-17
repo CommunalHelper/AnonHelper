@@ -1,0 +1,28 @@
+# Anon Cloud
+placements.entities.Anonhelper/AnonCloud.tooltips.pink=Changes the appearance to be pink. Doesn't change the functionality. 
+placements.entities.Anonhelper/AnonCloud.tooltips.small=Reduces the surface area of the cloud.
+
+# Wind Cloud
+placements.entities.Anonhelper/WindCloud.tooltips.fragile=Determines whether the cloud will temporarily disappear after being touched.
+placements.entities.Anonhelper/WindCloud.tooltips.small=Reduces the surface area of the cloud.
+
+# One Use Booster
+placements.entities.Anonhelper/OneUseBooster.tooltips.red=Determines whether the booster is green and short distance, or red and infinite distance.
+
+# Destructable Bounce Block
+placements.entities.Anonhelper/DestructableBounceBlock.tooltips.notCoreMode=Determines whether the entity should ignore the current core mode and default to ice variant.
+
+# Feather Bumper
+placements.entities.Anonhelper/FeatherBumper.tooltips.wobble=Whether the bumper should wobble like in vanilla.
+
+# Cloud Refill
+placements.entities.Anonhelper/CloudRefill.tooltips.oneUse=Whether the refill should respawn after being used.
+
+# Jelly Refill
+placements.entities.Anonhelper/JellyRefill.tooltips.oneUse=Whether the refill should respawn after being used.
+
+# Feather Refill
+placements.entities.Anonhelper/FeatherRefill.tooltips.oneUse=Whether the refill should respawn after being used.
+
+# Super Dash Refill
+placements.entities.Anonhelper/SuperDashRefill.tooltips.oneUse=Whether the refill should respawn after being used.
