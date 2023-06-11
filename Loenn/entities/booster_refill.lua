@@ -17,10 +17,10 @@ function boostRefill.texture(room, entity)
     local red = entity.boostOnEnd
 
     if red then
-        return "objects/AnonHelper/boosterRefillOnDash/"
+        return "objects/AnonHelper/boosterRefillOnDash/idle00"
 
     else
-        return "objects/AnonHelper/boosterRefill/"
+        return "objects/AnonHelper/boosterRefill/idle00"
     end
 end
 
