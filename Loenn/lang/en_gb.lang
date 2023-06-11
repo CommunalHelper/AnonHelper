@@ -6,6 +6,11 @@ entities.Anonhelper/AnonCloud.placements.name.fragile=Anon Cloud (Fragile)
 entities.Anonhelper/AnonCloud.attributes.description.pink=Changes the appearance to be pink. Doesn't change the functionality. 
 entities.Anonhelper/AnonCloud.attributes.description.small=Reduces the surface area of the cloud.
 
+# Booster Refill
+entities.Anonhelper/BoosterRefill.placements.name.boost_refill=Red Booster Refill
+entities.Anonhelper/BoosterRefill.attributes.description.oneUse=Whether the refill should respawn after being used.
+entities.Anonhelper/BoosterRefill.attributes.description.boostOnEnd=Whether or not the Red Bubble should spawn at the end of the dash or at the beginning.
+
 # Wind Cloud
 entities.Anonhelper/WindCloud.placements.name.normal=Wind Cloud
 entities.Anonhelper/WindCloud.placements.name.fragile=Wind Cloud (Fragile)
