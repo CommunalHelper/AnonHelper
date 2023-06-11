@@ -17,10 +17,10 @@ function boosterSprite(entity::BoostRefill)
     red = get(entity.data, "boostOnEnd", false)
     
     if red
-        return "objects/AnonHelper/boosterRefillOnDash/"
+        return "objects/AnonHelper/boosterRefillOnDash/idle00"
 
     else
-        return "objects/AnonHelper/boosterRefill/"
+        return "objects/AnonHelper/boosterRefill/idle00"
     end
 end
 
