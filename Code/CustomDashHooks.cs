@@ -118,7 +118,7 @@ namespace Celeste.Mod.Anonhelper {
         }
 
         private static IEnumerator BoosterDelay(Player player) {
-            player.Scene.Add(new OneUseBooster(player.Position + new Vector2(0, -10), true));
+            player.Scene.Add(new OneUseBooster(player.Position + new Vector2(0, -7), true));
             yield return 1f;
         }
 
