@@ -16,7 +16,7 @@
     </ItemDefinitionGroup>
 
     <ItemGroup>
-        <PackageReference Include="MonoMod" Version="25.0.2" PrivateAssets="all" ExcludeAssets="runtime" />
+        <PackageReference Include="MonoMod" Version="22.7.31.01" PrivateAssets="all" ExcludeAssets="runtime" />
         <PackageReference Include="MonoMod.RuntimeDetour" Version="25.0.2" PrivateAssets="all" ExcludeAssets="runtime" />
     </ItemGroup>
 
