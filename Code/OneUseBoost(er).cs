@@ -26,6 +26,7 @@ namespace Celeste.Mod.Anonhelper {
         private static IEnumerator BoosterDeath(On.Celeste.Booster.orig_BoostRoutine orig, Booster self, Player player, Vector2 direction) {
             if (self is OneUseBooster) {
                 self.Scene.Remove(DynamicData.For(self).Get<Entity>("outline"));
+                DynamicData.For(self).Get<VertexLight>("light").Visible = false;
             }
 
             yield return new SwapImmediately(orig(self, player, direction));
