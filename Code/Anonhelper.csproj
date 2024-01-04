@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net452</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <AssemblyName>Anonhelper</AssemblyName>
         <RootNamespace>Celeste.Mod.Anonhelper</RootNamespace>
         <LangVersion>latest</LangVersion>
