@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Sprites>
+
+  <superDashRefill path="objects/AnonHelper/superDashRefill/" start="idle">
+
+    <Loop id="idle" path="idle" delay="0.1"/>
+	<Anim id="flash" path="flash" delay="0.05"/>
+  </superDashRefill>
+  
+  
+  <jellyRefill path="objects/AnonHelper/jellyRefill/" start="idle">
+
+    <Loop id="idle" path="idle" delay="0.1"/>
+	<Anim id="flash" path="flash" delay="0.05"/>
+  </jellyRefill>
+  
+  
+  <featherRefill path="objects/AnonHelper/featherRefill/" start="idle">
+
+    <Loop id="idle" path="idle" delay="0.1"/>
+	<Anim id="flash" path="flash" delay="0.05"/>
+  </featherRefill>
+  
+  
+  <coreRefill path="objects/AnonHelper/coreRefill/" start="idle">
+
+    <Loop id="idle" path="idle" delay="0.1"/>
+	<Anim id="flash" path="flash" delay="0.05"/>
+  </coreRefill>
+  
+  
+  <cloudRefill path="objects/AnonHelper/cloudRefill/" start="idle">
+
+    <Loop id="idle" path="idle" delay="0.1"/>
+	<Anim id="flash" path="flash" delay="0.05"/>
+  </cloudRefill>
+  
+  
+  <boosterRefill path="objects/AnonHelper/boosterRefill/" start="idle">
+
+    <Loop id="idle" path="idle" delay="0.1"/>
+	<Anim id="flash" path="flash" delay="0.05"/>
+  </boosterRefill>
+  <boosterRefillOnDash path="objects/AnonHelper/boosterRefillOnDash/" copy="boosterRefill"/>
+	
+	
+</Sprites>

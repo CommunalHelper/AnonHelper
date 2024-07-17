@@ -78,20 +78,29 @@ namespace Celeste.Mod.Anonhelper {
             Collider = new Hitbox(16f, 16f, -8f, -8f);
             Add(new PlayerCollider(OnPlayer));
             this.oneUse = oneUse;
-            string str = "objects/AnonHelper/jellyRefill/";
-            Add(outline = new Image(GFX.Game[str + "outline"]));
-            outline.CenterOrigin();
-            outline.Visible = false;
-            Add(sprite = new Sprite(GFX.Game, str + "idle"));
-            sprite.AddLoop("idle", "", 1f);
+
+
+            string spriteID = "jellyRefill";
+            Add(sprite = GFX.SpriteBank.Create(spriteID));
             sprite.Play("idle");
             sprite.CenterOrigin();
-            Add(flash = new Sprite(GFX.Game, str + "flash"));
-            flash.Add("flash", "", 0.05f);
+
+            Add(flash = GFX.SpriteBank.Create(spriteID));
             flash.OnFinish = delegate {
                 flash.Visible = false;
             };
             flash.CenterOrigin();
+
+            string spritePath = $"{sprite.GetFrame("idle", 0)}";
+            spritePath = spritePath.Remove(spritePath.LastIndexOf("/") + 1) + "outline";
+            if (!GFX.Game.Has(spritePath)) {
+                spritePath = $"objects/AnonHelper/{spriteID}/outline";
+            }
+            Add(outline = new Image(GFX.Game[spritePath]));
+            outline.CenterOrigin();
+            outline.Visible = false;
+
+
             Add(wiggler = Wiggler.Create(1f, 4f, delegate (float v) {
                 sprite.Scale = flash.Scale = Vector2.One * (1f + (v * 0.2f));
             }));
